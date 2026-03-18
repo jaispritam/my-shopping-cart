@@ -1,0 +1,53 @@
+body {
+    font-family: Arial;
+    margin: 0;
+}
+
+.header {
+    background: black;
+    color: white;
+    padding: 15px;
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+}
+
+.products {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.cart {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.cart-icon {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 18px;
+}
+
+#toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+}
