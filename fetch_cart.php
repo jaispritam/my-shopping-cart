@@ -8,6 +8,8 @@ if(!empty($_SESSION['cart'])) {
 
     foreach($_SESSION['cart'] as $id => $qty) {
 
+        $id = (int)$id;
+
         $q = mysqli_query($con, "SELECT * FROM product WHERE id=$id");
         $p = mysqli_fetch_assoc($q);
 
@@ -17,22 +19,38 @@ if(!empty($_SESSION['cart'])) {
         $total += $sub;
 ?>
 
-<div class="cart-item">
-    <b><?php echo $p['product_name']; ?></b><br>
-    Qty: <?php echo $qty; ?><br>
-    ₹<?php echo $sub; ?>
+<div class="cart-item" id="item-<?php echo $id; ?>">
 
-    <button onclick="updateCart(<?php echo $id; ?>, 'increase')">+</button>
-    <button onclick="updateCart(<?php echo $id; ?>, 'decrease')">-</button>
-    <button onclick="updateCart(<?php echo $id; ?>, 'remove')">Remove</button>
+    <b><?php echo $p['product_name']; ?></b><br>
+
+    Price: ₹<span id="price-<?php echo $id; ?>">
+        <?php echo $p['product_price']; ?>
+    </span><br>
+
+    Qty:
+    <button onclick="updateCartUI(<?php echo $id; ?>, -1)">-</button>
+    <span id="qty-<?php echo $id; ?>"><?php echo $qty; ?></span>
+    <button onclick="updateCartUI(<?php echo $id; ?>, 1)">+</button>
+
+    <br>
+
+    Subtotal: ₹
+    <span id="sub-<?php echo $id; ?>">
+        <?php echo $sub; ?>
+    </span>
+
+    <br>
+
+    <button onclick="removeItemUI(<?php echo $id; ?>)">Remove</button>
+
 </div>
 
 <?php
     }
 
-    echo "<h4>Total: ₹$total</h4>";
+    echo "<h3>Total: ₹<span id='cart-total'>$total</span></h3>";
 
 } else {
-    echo "Cart is empty";
+    echo "<h3>Cart is empty</h3>";
 }
 ?>

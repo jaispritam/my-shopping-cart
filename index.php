@@ -1,10 +1,10 @@
 <?php
 session_start();
 include("include/connection.php");
-
-/* =========================
+/*
+ =========================
    HANDLE ALL ACTIONS FIRST
-   ========================= */
+   ========================= 
 
 // ADD TO CART
 if(isset($_POST['add_to_cart'])) {
@@ -33,6 +33,7 @@ if(isset($_POST['remove'])) {
     $id = (int)$_POST['product_id'];
     unset($_SESSION['cart'][$id]);
 }
+*/
 ?>
 
 <?php include("include/header.php"); ?>
@@ -61,10 +62,12 @@ if(isset($_POST['remove'])) {
                 <h3><?php echo $row['product_name']; ?></h3>
                 <p>₹<?php echo $row['product_price']; ?></p>
 
-                <form method="post">
+                
                     <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
-                    <button onclick="addToCart(<?php echo $row['id']; ?>)">Add to Cart</button>
-                </form>
+                    <button onclick="addToCart(<?php echo $row['id']; ?>)">
+                        Add to Cart
+                    </button>
+               
             </div>
 
         <?php } ?>
@@ -77,7 +80,7 @@ if(isset($_POST['remove'])) {
          ========================= -->
     <div class="cart">
         <h3>Cart</h3>
-        <?php include("cart.php"); ?>
+        
     </div>
 
 </div>
